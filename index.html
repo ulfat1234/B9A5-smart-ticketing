@@ -59,7 +59,7 @@
         <p class="text-white text-center font-inter w-[691px]">Yes, you can run unit tests and view the results directly
           within the
           app. The integrated testing features allow for a streamlined.</p>
-        <button class=" bg-[#1DD100] text-black font-bold text-xl h-14 w-36 rounded-xl">Buy Tickets</button>
+        <button onclick="scrollToTicketSection()" class=" bg-[#1DD100] text-black font-bold text-xl h-14 w-36 rounded-xl">Buy Tickets</button>
       </div>
     </section>
 
@@ -104,9 +104,9 @@
     </section>
 
     <!-- Ticket Booking Section -->
-    <section class="border-2 border-[#1DD100] rounded-t-[100px] bg-[#F7F8F8] p-28">
+    <section id="ticket-section" class="border-2 border-[#1DD100] rounded-t-[100px] bg-[#F7F8F8] p-28">
       <div class="text-center">
-        <h1 class="text-5xl font-bold">P.H Paribahan</h1>
+        <h1 class="text-5xl font-bold">Eusha Paribahan</h1>
         <p class="w-[750px] mx-auto mt-5">You can see all information of available buses and you can easily purchase
           tickets for your desired destinations from here.</p>
       </div>
@@ -191,32 +191,34 @@
             </div>
 
             <div class="flex justify-between my-3">
+              <div id="warningMessage" class="hidden text-red-600">Maximum 4 seats can be selected at a time!</div>
+
               <div class="flex gap-4  items-center">
                 <p class=" text-[#03071280] font-inter font-medium text-lg">A</p>
-                <button
+                <button onclick="setBgColorById('a1')" id="a1"
                   class="add-btn bg-[#F7F8F8] h-[56px] w-[110px] rounded-xl text-[#03071280] font-inter font-medium text-lg">A1</button>
-                <button
+                <button  onclick="setBgColorById('a2')"  id="a2"
                   class="add-btn bg-[#F7F8F8] h-[56px] w-[110px] rounded-xl text-[#03071280] font-inter font-medium text-lg">A2</button>
               </div>
               <div class="flex gap-4  items-center">
-                <button
+                <button  onclick="setBgColorById('a3')" id="a3"
                   class="add-btn bg-[#F7F8F8] h-[56px] w-[110px] rounded-xl text-[#03071280] font-inter font-medium text-lg">A3</button>
-                <button
+                <button  onclick="setBgColorById('a4')"  id="a4"
                   class="add-btn bg-[#F7F8F8] h-[56px] w-[110px] rounded-xl text-[#03071280] font-inter font-medium text-lg">A4</button>
               </div>
             </div>
             <div class="flex justify-between my-3">
               <div class="flex gap-4  items-center">
                 <p class=" text-[#03071280] font-inter font-medium text-lg">B</p>
-                <button
+                <button  onclick="setBgColorById('b1')" id="b1"
                   class="add-btn bg-[#F7F8F8] h-[56px] w-[110px] rounded-xl text-[#03071280] font-inter font-medium text-lg">B1</button>
-                <button
+                <button  onclick="setBgColorById('b2')" id="b2"
                   class="add-btn bg-[#F7F8F8] h-[56px] w-[110px] rounded-xl text-[#03071280] font-inter font-medium text-lg">B2</button>
               </div>
               <div class="flex gap-4  items-center">
-                <button
+                <button  onclick="setBgColorById('b3')" id="b3"
                   class="add-btn bg-[#F7F8F8] h-[56px] w-[110px] rounded-xl text-[#03071280] font-inter font-medium text-lg">B3</button>
-                <button
+                <button  onclick="setBgColorById('b4')" id="b4"
                   class="add-btn bg-[#F7F8F8] h-[56px] w-[110px] rounded-xl text-[#03071280] font-inter font-medium text-lg">B4</button>
               </div>
             </div>
@@ -368,14 +370,17 @@
 
             <div class="bg-[#F7F8F8] h-[326px] w-[434px] rounded-xl p-7 my-4">
               <div class="flex justify-between font-medium font-inter mb-2">
-                <h4 class="">Seat <span id="seat-selected" class="bg-[#1DD100] h-[13px] w-[23px] text-white font-inter text-xs">0</span></h4>
-                <p>Class</p>
+                <div class="flex gap-1 items-center">
+                  <h4 class=>Seat</h4>
+                  <p id="seat-selected" class="bg-[#1DD100] rounded-md w-[28px] h-[18px] text-white font-inter text-center text-xs">0</p>
+                </div>
+                <p class="-ml-2">Class</p>
                 <p>Price</p>
               </div>
               <img src="./images/Line 5.png" alt="">
               <div class="flex justify-between font-medium font-inter my-2">
                 <p>Total Price</p>
-                <p>BDT <span >0</span></p>
+                <p>BDT <span id="total-price">0</span></p>
               </div>
               <label class="input pr-1 pl-1 input-bordered flex items-center h-11">
                 <input type="text" class="grow" placeholder=" Have any coupon?" />
@@ -400,7 +405,7 @@
               <input type="text" placeholder="Enter your email id" class="input input-bordered w-[434px]" />
             </div>
             <div>
-              <button class="bg-[#1DD100] rounded-2xl h-[63px] w-[434px] text-white text-xl font-extrabold my-4">Next</button>
+              <button id="next" class="bg-[#1DD100] rounded-2xl h-[63px] w-[434px] text-white text-xl font-extrabold my-4">Next</button>
               <div class="flex gap-4 justify-center">
                 <p class="font-inter underline text-[#03071299]">Terms and Conditions</p>
                 <p class="font-inter underline text-[#03071299]">Cancellation Policy</p>
@@ -412,6 +417,19 @@
         </div>
 
     </section>
+
+    <section id="success" class="flex justify-center hidden -mt-[800px]">
+      <div class="bg-white h-[481px] w-[718px] flex flex-col justify-center items-center gap-2 shadow-lg p-7 rounded-3xl">
+        <img src="./images/success.png" alt="">
+        <p class="text-[#27AE60] text-2xl font-bold">SUCCESS</p>
+        <p class="text-center font-extrabold text-xl"> Thank you for Booking Our Bus Seats. We are working hard to find the best service and deals for you.</p>
+        <p>Shortly you will find a confirmation in your email.</p>
+        <button id="continue-btn" class="bg-[#27AE60] h-[56px] w-[300px] rounded-3xl text-white">Continue</button>
+      </div>
+      
+    </section>
+     
+    
 
   </main>
 
