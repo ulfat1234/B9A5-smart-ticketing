@@ -15,7 +15,8 @@ let seatSelected = 0;
 let totalPrice = 0;
 for (btn of allBtn) {
     btn.addEventListener('click', function (e) {
-        seatLeft = seatLeft - 1;
+        if(seatSelected<4){
+            seatLeft = seatLeft - 1;
         setInnerText("seats-left", seatLeft);
 
         seatSelected = seatSelected + 1;
@@ -23,7 +24,8 @@ for (btn of allBtn) {
 
         totalPrice = totalPrice + 550;
         setInnerText("total-price", totalPrice);
-    })
+        }  
+    });
 }
 
 // highlight the selected seats
@@ -33,6 +35,26 @@ function setBgColorById(buttonId) {
     element.classList.add('bg-[#1DD100]');
 }
 
+
+  var selectedSeats = [];
+  function setBgColorById(buttonId) {
+    var seatButton = document.getElementById(buttonId);
+
+    if (selectedSeats.includes(buttonId)) {
+      selectedSeats = selectedSeats.filter(seat => seat !== buttonId);
+      seatButton.classList.remove('bg-[#1DD100]');
+      seatButton.classList.add('bg-[#F7F8F8]');
+
+      
+    } else {
+      if (selectedSeats.length >= 4) {
+        return; 
+      }
+      selectedSeats.push(buttonId);
+      seatButton.classList.remove('bg-[#F7F8F8]');
+      seatButton.classList.add('bg-[#1DD100]');
+    }
+  }
 
 // show popup when click the next button
 const nextBtn = document.getElementById('next');
